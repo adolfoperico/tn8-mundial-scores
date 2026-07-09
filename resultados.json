@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T20:18:42.655Z",
+  "generatedAt": "2026-07-09T21:31:32.698Z",
   "source": "football-data.org",
   "competition": "WC",
   "unmappedTeams": [],
@@ -682,7 +682,7 @@
       "date": "2026-07-09",
       "home": "Francia",
       "away": "Marruecos",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
       "status": "IN_PLAY",
       "minute": null,
