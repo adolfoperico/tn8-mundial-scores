@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T19:54:35.887Z",
+  "generatedAt": "2026-07-09T20:09:53.178Z",
   "source": "football-data.org",
   "competition": "WC",
   "unmappedTeams": [],
@@ -677,5 +677,17 @@
       "awayScore": 3
     }
   ],
-  "live": []
+  "live": [
+    {
+      "date": "2026-07-09",
+      "home": "Francia",
+      "away": "Marruecos",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "IN_PLAY",
+      "minute": null,
+      "utcDate": "2026-07-09T20:00:00Z",
+      "stage": "QUARTER_FINALS"
+    }
+  ]
 }
