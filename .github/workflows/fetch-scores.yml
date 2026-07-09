@@ -2,8 +2,9 @@ name: Fetch Mundial 2026 scores
 
 on:
   schedule:
-    # Cada 5 min (mínimo permitido por GitHub Actions en cron).
-    - cron: '*/5 * * * *'
+    # Cron de respaldo. GH Actions delay/skip esto en repos poco activos —
+    # por eso el job hace 60 iteraciones internas (5h de cobertura por invocación).
+    - cron: '*/30 * * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -16,11 +17,13 @@ permissions:
 
 concurrency:
   group: fetch-scores
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    # Job max GH free tier = 6h. Usamos 5h30 con margen.
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
 
@@ -31,36 +34,48 @@ jobs:
       - name: Install deps
         run: npm ci --silent || npm install --silent
 
-      - name: Fetch scores
+      - name: Configure git
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Fetch loop (60 iteraciones cada 5min = 5h de cobertura)
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           COMPETITION_CODE: ${{ vars.COMPETITION_CODE || 'WC' }}
           OUTPUT_PATH: ./resultados.json
-        run: node fetch-matches.mjs
-
-      - name: Commit if changed
         run: |
-          if [[ -z "$(git status --porcelain resultados.json)" ]]; then
-            echo 'No changes to resultados.json'
-            exit 0
-          fi
-          git config user.name  'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add resultados.json
-          git commit -m "chore(scores): auto-update $(date -u +%FT%TZ)"
-          # Reintenta hasta 3 veces con pull --rebase para superar carreras de push concurrentes
-          for i in 1 2 3; do
-            if git push; then
-              echo "push OK (intento $i)"
-              break
+          set +e  # no aborte si una iteración falla
+          for i in $(seq 1 60); do
+            echo "=== Iteración $i/60 · $(date -u +%FT%TZ) ==="
+
+            node fetch-matches.mjs || { echo "fetch failed, seguimos"; sleep 300; continue; }
+
+            if [[ -z "$(git status --porcelain resultados.json)" ]]; then
+              echo "  sin cambios"
+            else
+              git add resultados.json
+              git commit -m "chore(scores): auto-update $(date -u +%FT%TZ)"
+              # Retry push con rebase para superar carreras
+              for j in 1 2 3; do
+                if git push; then
+                  echo "  push OK (intento $j)"
+                  # Purge cache CDN
+                  curl -sSL "https://purge.jsdelivr.net/gh/adolfoperico/tn8-mundial-scores@main/resultados.json" > /dev/null || true
+                  break
+                fi
+                git pull --rebase --strategy-option=theirs origin main
+              done
             fi
-            echo "push rechazado, pull --rebase e intento $((i+1))"
-            git pull --rebase --strategy-option=theirs origin main
+
+            # Dormir 5 min salvo en la última iteración
+            [[ $i -lt 60 ]] && sleep 300
           done
 
-      - name: Purge jsDelivr cache
-        run: |
-          # jsDelivr cachea 12h a nivel edge, ignorando ?t= en cache-busters.
-          # Purgamos explícitamente para que el próximo poll del browser vea
-          # el score actualizado casi al instante.
-          curl -sSL "https://purge.jsdelivr.net/gh/adolfoperico/tn8-mundial-scores@main/resultados.json" || true
+      - name: Trigger self-restart
+        # Al terminar las 5h, disparamos un nuevo run para continuar.
+        # Fallback en caso de que el cron de arriba se atrase.
+        if: always()
+        run: gh workflow run fetch-scores.yml
+        env:
+          GH_TOKEN: ${{ github.token }}
