@@ -132,16 +132,15 @@ function transform(raw) {
     const as = m.score?.fullTime?.away;
     const isFinished = m.status === 'FINISHED';
     const isLive = m.status === 'IN_PLAY' || m.status === 'PAUSED';
+    // Para live: fullTime se actualiza durante el partido con el score actual.
+    const showScore = isFinished || isLive;
 
-    // El polling actual sólo consume homeScore/awayScore como número.
-    // Emitimos números sólo para partidos terminados (evita "Final" fantasma en vivos).
-    // Los live los emitimos aparte en `live[]` para el próximo iteración de UI.
     return {
       date,
       home,
       away,
-      homeScore: isFinished ? hs : null,
-      awayScore: isFinished ? as : null,
+      homeScore: showScore ? hs : null,
+      awayScore: showScore ? as : null,
       status: m.status,
       minute: isLive ? m.minute ?? null : null,
       utcDate: m.utcDate,
