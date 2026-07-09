@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T20:09:53.178Z",
+  "generatedAt": "2026-07-09T20:19:37.873Z",
   "source": "football-data.org",
   "competition": "WC",
   "unmappedTeams": [],
@@ -12,7 +12,7 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-12",
+      "date": "2026-06-11",
       "home": "Corea del Sur",
       "away": "Chequia",
       "homeScore": 2,
@@ -26,7 +26,7 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-13",
+      "date": "2026-06-12",
       "home": "EE. UU.",
       "away": "Paraguay",
       "homeScore": 4,
@@ -47,14 +47,14 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-14",
+      "date": "2026-06-13",
       "home": "Haití",
       "away": "Escocia",
       "homeScore": 0,
       "awayScore": 1
     },
     {
-      "date": "2026-06-14",
+      "date": "2026-06-13",
       "home": "Australia",
       "away": "Turquía",
       "homeScore": 2,
@@ -82,7 +82,7 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-15",
+      "date": "2026-06-14",
       "home": "Suecia",
       "away": "Túnez",
       "homeScore": 5,
@@ -110,7 +110,7 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-16",
+      "date": "2026-06-15",
       "home": "Irán",
       "away": "Nueva Zelanda",
       "homeScore": 2,
@@ -131,14 +131,14 @@
       "awayScore": 4
     },
     {
-      "date": "2026-06-17",
+      "date": "2026-06-16",
       "home": "Argentina",
       "away": "Argelia",
       "homeScore": 3,
       "awayScore": 0
     },
     {
-      "date": "2026-06-17",
+      "date": "2026-06-16",
       "home": "Austria",
       "away": "Jordania",
       "homeScore": 3,
@@ -166,7 +166,7 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-18",
+      "date": "2026-06-17",
       "home": "Uzbekistán",
       "away": "Colombia",
       "homeScore": 1,
@@ -194,7 +194,7 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-19",
+      "date": "2026-06-18",
       "home": "México",
       "away": "Corea del Sur",
       "homeScore": 1,
@@ -215,14 +215,14 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-20",
+      "date": "2026-06-19",
       "home": "Brasil",
       "away": "Haití",
       "homeScore": 3,
       "awayScore": 0
     },
     {
-      "date": "2026-06-20",
+      "date": "2026-06-19",
       "home": "Turquía",
       "away": "Paraguay",
       "homeScore": 0,
@@ -243,14 +243,14 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-21",
+      "date": "2026-06-20",
       "home": "Ecuador",
       "away": "Curazao",
       "homeScore": 0,
       "awayScore": 0
     },
     {
-      "date": "2026-06-21",
+      "date": "2026-06-20",
       "home": "Túnez",
       "away": "Japón",
       "homeScore": 0,
@@ -278,7 +278,7 @@
       "awayScore": 2
     },
     {
-      "date": "2026-06-22",
+      "date": "2026-06-21",
       "home": "Nueva Zelanda",
       "away": "Egipto",
       "homeScore": 1,
@@ -299,14 +299,14 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-23",
+      "date": "2026-06-22",
       "home": "Noruega",
       "away": "Senegal",
       "homeScore": 3,
       "awayScore": 2
     },
     {
-      "date": "2026-06-23",
+      "date": "2026-06-22",
       "home": "Jordania",
       "away": "Argelia",
       "homeScore": 1,
@@ -334,7 +334,7 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-24",
+      "date": "2026-06-23",
       "home": "Colombia",
       "away": "RD Congo",
       "homeScore": 1,
@@ -369,14 +369,14 @@
       "awayScore": 3
     },
     {
-      "date": "2026-06-25",
+      "date": "2026-06-24",
       "home": "Chequia",
       "away": "México",
       "homeScore": 0,
       "awayScore": 3
     },
     {
-      "date": "2026-06-25",
+      "date": "2026-06-24",
       "home": "Sudáfrica",
       "away": "Corea del Sur",
       "homeScore": 1,
@@ -411,14 +411,14 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-26",
+      "date": "2026-06-25",
       "home": "Turquía",
       "away": "EE. UU.",
       "homeScore": 3,
       "awayScore": 2
     },
     {
-      "date": "2026-06-26",
+      "date": "2026-06-25",
       "home": "Paraguay",
       "away": "Australia",
       "homeScore": 0,
@@ -439,28 +439,28 @@
       "awayScore": 0
     },
     {
-      "date": "2026-06-27",
+      "date": "2026-06-26",
       "home": "Uruguay",
       "away": "España",
       "homeScore": 0,
       "awayScore": 1
     },
     {
-      "date": "2026-06-27",
+      "date": "2026-06-26",
       "home": "Cabo Verde",
       "away": "Arabia Saudita",
       "homeScore": 0,
       "awayScore": 0
     },
     {
-      "date": "2026-06-27",
+      "date": "2026-06-26",
       "home": "Nueva Zelanda",
       "away": "Bélgica",
       "homeScore": 1,
       "awayScore": 5
     },
     {
-      "date": "2026-06-27",
+      "date": "2026-06-26",
       "home": "Egipto",
       "away": "Irán",
       "homeScore": 1,
@@ -495,14 +495,14 @@
       "awayScore": 1
     },
     {
-      "date": "2026-06-28",
+      "date": "2026-06-27",
       "home": "Jordania",
       "away": "Argentina",
       "homeScore": 1,
       "awayScore": 3
     },
     {
-      "date": "2026-06-28",
+      "date": "2026-06-27",
       "home": "Argelia",
       "away": "Austria",
       "homeScore": 3,
@@ -530,7 +530,7 @@
       "awayScore": 5
     },
     {
-      "date": "2026-06-30",
+      "date": "2026-06-29",
       "home": "Países Bajos",
       "away": "Marruecos",
       "homeScore": 3,
@@ -551,7 +551,7 @@
       "awayScore": 0
     },
     {
-      "date": "2026-07-01",
+      "date": "2026-06-30",
       "home": "México",
       "away": "Ecuador",
       "homeScore": 2,
@@ -572,7 +572,7 @@
       "awayScore": 2
     },
     {
-      "date": "2026-07-02",
+      "date": "2026-07-01",
       "home": "EE. UU.",
       "away": "Bosnia y Herzegovina",
       "homeScore": 2,
@@ -593,7 +593,7 @@
       "awayScore": 1
     },
     {
-      "date": "2026-07-03",
+      "date": "2026-07-02",
       "home": "Suiza",
       "away": "Argelia",
       "homeScore": 2,
@@ -614,7 +614,7 @@
       "awayScore": 2
     },
     {
-      "date": "2026-07-04",
+      "date": "2026-07-03",
       "home": "Colombia",
       "away": "Ghana",
       "homeScore": 1,
@@ -642,7 +642,7 @@
       "awayScore": 2
     },
     {
-      "date": "2026-07-06",
+      "date": "2026-07-05",
       "home": "México",
       "away": "Inglaterra",
       "homeScore": 2,
@@ -656,7 +656,7 @@
       "awayScore": 1
     },
     {
-      "date": "2026-07-07",
+      "date": "2026-07-06",
       "home": "EE. UU.",
       "away": "Bélgica",
       "homeScore": 1,
