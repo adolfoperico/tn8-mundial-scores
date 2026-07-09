@@ -40,12 +40,22 @@ jobs:
 
       - name: Commit if changed
         run: |
-          if [[ -n "$(git status --porcelain resultados.json)" ]]; then
-            git config user.name  'github-actions[bot]'
-            git config user.email 'github-actions[bot]@users.noreply.github.com'
-            git add resultados.json
-            git commit -m "chore(scores): auto-update $(date -u +%FT%TZ)"
-            git push
-          else
+          if [[ -z "$(git status --porcelain resultados.json)" ]]; then
             echo 'No changes to resultados.json'
+            exit 0
           fi
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add resultados.json
+          git commit -m "chore(scores): auto-update $(date -u +%FT%TZ)"
+          # Reintenta hasta 3 veces con pull --rebase para superar carreras de push concurrentes
+          for i in 1 2 3; do
+            if git push; then
+              echo "push OK (intento $i)"
+              exit 0
+            fi
+            echo "push rechazado, pull --rebase e intento $((i+1))"
+            git pull --rebase --strategy-option=theirs origin main
+          done
+          echo "no se pudo pushear tras 3 intentos"
+          exit 1
