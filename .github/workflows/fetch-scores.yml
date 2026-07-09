@@ -1,0 +1,51 @@
+name: Fetch Mundial 2026 scores
+
+on:
+  schedule:
+    # Cada 5 min (mínimo permitido por GitHub Actions en cron).
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'fetch-matches.mjs'
+      - '.github/workflows/fetch-scores.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-scores
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm ci --silent || npm install --silent
+
+      - name: Fetch scores
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          COMPETITION_CODE: ${{ vars.COMPETITION_CODE || 'WC' }}
+          OUTPUT_PATH: ./resultados.json
+        run: node fetch-matches.mjs
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain resultados.json)" ]]; then
+            git config user.name  'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git add resultados.json
+            git commit -m "chore(scores): auto-update $(date -u +%FT%TZ)"
+            git push
+          else
+            echo 'No changes to resultados.json'
+          fi

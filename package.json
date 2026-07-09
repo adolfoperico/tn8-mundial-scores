@@ -1,0 +1,17 @@
+{
+  "name": "mundial-live-scores",
+  "version": "1.0.0",
+  "description": "football-data.org → resultados.json para la landing TN8 del Mundial 2026",
+  "type": "module",
+  "main": "fetch-matches.mjs",
+  "scripts": {
+    "start": "node fetch-matches.mjs",
+    "test-run": "node fetch-matches.mjs --dry-run"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
