@@ -97,6 +97,17 @@ const SAME_IN_BOTH = new Set([
   'panama','iran','ecuador'
 ]);
 
+// Convierte utcDate ISO a fecha calendario en hora Nicaragua (UTC-6, sin DST).
+// Necesario porque BRACKETS/MATCHES usan hora Nica y la API devuelve UTC —
+// los partidos nocturnos (≥18:00 Nica) cruzan medianoche UTC → sin conversión
+// las fechas no matchean y se rompe la cascada de winners.
+function utcToNicaDate(utcISO) {
+  if (!utcISO) return null;
+  const d = new Date(utcISO);
+  d.setUTCHours(d.getUTCHours() - 6);
+  return d.toISOString().slice(0, 10);
+}
+
 function mapTeam(name) {
   if (!name) return { name: null, wasMapped: true };
   const key = name.toLowerCase().trim();
@@ -127,7 +138,7 @@ function transform(raw) {
     const home = h.name;
     const away = a.name;
 
-    const date = m.utcDate ? m.utcDate.slice(0, 10) : null;
+    const date = utcToNicaDate(m.utcDate);
     const hs = m.score?.fullTime?.home;
     const as = m.score?.fullTime?.away;
     const isFinished = m.status === 'FINISHED';
