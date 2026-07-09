@@ -16,8 +16,10 @@ permissions:
   contents: write
 
 concurrency:
+  # No cancelamos runs en curso — el loop dura 5h y no debe interrumpirse.
+  # Un run nuevo se encola y arranca cuando el actual termina.
   group: fetch-scores
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   fetch:
