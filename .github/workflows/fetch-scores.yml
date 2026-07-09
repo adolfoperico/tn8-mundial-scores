@@ -52,10 +52,15 @@ jobs:
           for i in 1 2 3; do
             if git push; then
               echo "push OK (intento $i)"
-              exit 0
+              break
             fi
             echo "push rechazado, pull --rebase e intento $((i+1))"
             git pull --rebase --strategy-option=theirs origin main
           done
-          echo "no se pudo pushear tras 3 intentos"
-          exit 1
+
+      - name: Purge jsDelivr cache
+        run: |
+          # jsDelivr cachea 12h a nivel edge, ignorando ?t= en cache-busters.
+          # Purgamos explícitamente para que el próximo poll del browser vea
+          # el score actualizado casi al instante.
+          curl -sSL -X POST "https://purge.jsdelivr.net/gh/adolfoperico/tn8-mundial-scores@main/resultados.json" || true
